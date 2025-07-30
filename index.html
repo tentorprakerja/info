@@ -1,335 +1,322 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desain Grafis - Loading Page</title>
+    <title>Graphic Design Training | Loading...</title>
     <style>
+        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: #1a1a2e;
-            color: white;
+            background-color: #121212;
+            color: #ffffff;
+            overflow: hidden;
             height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
-        }
-        
-        .logo-container {
-            margin-bottom: 50px;
-            text-align: center;
-        }
-        
-        .logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(145deg, #ff7e5f, #feb47b);
-            box-shadow: 0 10px 30px rgba(254, 180, 123, 0.3);
             position: relative;
-            margin: 0 auto 20px;
-            overflow: hidden;
         }
-        
-        .logo-inner {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
+
+        /* Main Container */
+        .loading-container {
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            background-color: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 2;
         }
-        
-        .design-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
+
+        /* Logo Styles */
+        .logo {
+            margin-bottom: 30px;
         }
-        
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.4);
-            animation: float 6s infinite ease-in-out;
+
+        .logo svg {
+            width: 120px;
+            height: auto;
         }
-        
-        .circle:nth-child(1) {
-            width: 20px;
-            height: 20px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-        
-        .circle:nth-child(2) {
-            width: 30px;
-            height: 30px;
-            top: 70%;
-            left: 80%;
-            animation-delay: -2s;
-        }
-        
-        .circle:nth-child(3) {
-            width: 40px;
-            height: 40px;
-            top: 50%;
-            left: 30%;
-            animation-delay: -4s;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-30px);
-            }
-        }
-        
-        h1 {
+
+        .logo-text {
             font-size: 2.5rem;
-            margin-bottom: 15px;
             font-weight: 700;
-            background: linear-gradient(90deg, #ff7e5f, #feb47b);
+            margin-top: 15px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71, #b36bff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
-        
-        p {
-            font-size: 1rem;
-            margin-bottom: 40px;
-            color: rgba(255, 255, 255, 0.7);
-            max-width: 500px;
-            text-align: center;
-            line-height: 1.6;
-        }
-        
+
+        /* Progress Bar */
         .progress-container {
-            width: 300px;
+            width: 100%;
             height: 8px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: #333;
             border-radius: 4px;
-            margin-bottom: 30px;
+            margin: 30px 0;
             overflow: hidden;
         }
-        
+
         .progress-bar {
             height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #ff7e5f, #feb47b);
+            width: 0;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
             border-radius: 4px;
-            transition: width 0.4s ease;
+            transition: width 0.3s ease;
         }
-        
+
+        /* Loading Text */
         .loading-text {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #aaa;
+            font-weight: 300;
         }
-        
-        .design-icons {
+
+        .loading-subtext {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Tool Icons */
+        .tools-container {
             display: flex;
             justify-content: center;
-            margin-top: 40px;
-            gap: 30px;
+            gap: 25px;
+            margin: 40px 0;
+            flex-wrap: wrap;
         }
-        
-        .icon {
+
+        .tool-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .tool-icon:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-icon svg {
             width: 40px;
             height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0.7;
-            animation: pulse 2s infinite ease-in-out;
+            margin-bottom: 10px;
         }
-        
-        .icon:nth-child(1) {
-            animation-delay: 0.3s;
+
+        .tool-name {
+            font-size: 0.8rem;
+            color: #777;
         }
-        
-        .icon:nth-child(2) {
-            animation-delay: 0.6s;
-        }
-        
-        .icon:nth-child(3) {
-            animation-delay: 0.9s;
-        }
-        
-        .icon:nth-child(4) {
-            animation-delay: 1.2s;
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-        }
-        
-        .grid-lines {
+
+        /* Creative Background Elements */
+        .design-element {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.05;
+            opacity: 0.1;
+            z-index: 1;
         }
-        
-        .line {
-            position: absolute;
-            background-color: white;
+
+        .element-1 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #ff8a00, transparent);
+            border-radius: 50%;
+            top: -50px;
+            left: -50px;
         }
-        
-        .horizontal {
-            width: 100%;
-            height: 1px;
-            top: 0;
-            left: 0;
+
+        .element-2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #e52e71, transparent);
+            border-radius: 30px;
+            bottom: -80px;
+            right: -80px;
+            transform: rotate(45deg);
         }
-        
-        .vertical {
-            width: 1px;
-            height: 100%;
-            top: 0;
-            left: 0;
+
+        .element-3 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(-45deg, #b36bff, transparent);
+            border-radius: 20px;
+            top: 50%;
+            left: 20%;
+            transform: rotate(15deg);
         }
-        
-        /* Responsive */
+
+        /* Responsive Adjustments */
         @media (max-width: 600px) {
-            h1 {
-                font-size: 2rem;
+            .logo-text {
+                font-size: 1.8rem;
             }
             
-            p {
-                font-size: 0.9rem;
-                max-width: 80%;
+            .loading-text {
+                font-size: 1rem;
             }
-            
-            .progress-container {
-                width: 250px;
-            }
-            
-            .design-icons {
+
+            .tools-container {
                 gap: 15px;
             }
-            
-            .icon {
+
+            .tool-icon svg {
                 width: 30px;
                 height: 30px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .loading-container {
+                padding: 20px;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="design-elements">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        
-        <!-- Grid lines -->
-        <div class="grid-lines">
-            <div class="line horizontal" style="top: 20%"></div>
-            <div class="line horizontal" style="top: 40%"></div>
-            <div class="line horizontal" style="top: 60%"></div>
-            <div class="line horizontal" style="top: 80%"></div>
-            <div class="line vertical" style="left: 20%"></div>
-            <div class="line vertical" style="left: 40%"></div>
-            <div class="line vertical" style="left: 60%"></div>
-            <div class="line vertical" style="left: 80%"></div>
-        </div>
-    </div>
-    
-    <div class="logo-container">
+    <!-- Design Background Elements -->
+    <div class="design-element element-1"></div>
+    <div class="design-element element-2"></div>
+    <div class="design-element element-3"></div>
+
+    <!-- Main Loading Content -->
+    <div class="loading-container">
         <div class="logo">
-            <div class="design-elements">
-                <div class="logo-inner"></div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+                <path d="M32 6L6 32L32 58L58 32L32 6Z" stroke="url(#gradient1)" stroke-width="4"/>
+                <path d="M32 16L16 32L32 48L48 32L32 16Z" stroke="url(#gradient2)" stroke-width="4"/>
+                <path d="M32 26L26 32L32 38L38 32L32 26Z" stroke="url(#gradient3)" stroke-width="4"/>
+                <defs>
+                    <linearGradient id="gradient1" x1="6" y1="6" x2="58" y2="58" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#ff8a00"/>
+                        <stop offset="1" stop-color="#e52e71"/>
+                    </linearGradient>
+                    <linearGradient id="gradient2" x1="16" y1="16" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#e52e71"/>
+                        <stop offset="1" stop-color="#b36bff"/>
+                    </linearGradient>
+                    <linearGradient id="gradient3" x1="26" y1="26" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#b36bff"/>
+                        <stop offset="1" stop-color="#ff8a00"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <div class="logo-text">DESIGN MASTERY</div>
+        </div>
+
+        <div class="loading-text">Preparing your graphic design training experience...</div>
+        
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="loading-subtext">Mastering Adobe Creative Suite • Color Theory • Typography • Layout Design</div>
+
+        <div class="tools-container">
+            <div class="tool-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="1" y="1" width="22" height="22" rx="2" stroke="#ff8a00"/>
+                    <path d="M16 8L8 16" stroke="#ff8a00"/>
+                    <path d="M8 8l8 8" stroke="#ff8a00"/>
+                </svg>
+                <div class="tool-name">Photoshop</div>
+            </div>
+            <div class="tool-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#e52e71"/>
+                    <path d="M2 17l10 5 10-5" stroke="#e52e71"/>
+                    <path d="M2 12l10 5 10-5" stroke="#e52e71"/>
+                </svg>
+                <div class="tool-name">Illustrator</div>
+            </div>
+            <div class="tool-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="4" width="14" height="16" rx="1" stroke="#b36bff"/>
+                    <path d="M9 8h6" stroke="#b36bff"/>
+                    <path d="M9 12h6" stroke="#b36bff"/>
+                    <path d="M9 16h4" stroke="#b36bff"/>
+                </svg>
+                <div class="tool-name">InDesign</div>
+            </div>
+            <div class="tool-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" stroke="#26c6da"/>
+                    <path d="M12 8v4l3 3" stroke="#26c6da"/>
+                </svg>
+                <div class="tool-name">After Effects</div>
+            </div>
+            <div class="tool-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="23 7 16 12 23 17 23 7" stroke="#66bb6a"/>
+                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2" stroke="#66bb6a"/>
+                </svg>
+                <div class="tool-name">Premiere Pro</div>
             </div>
         </div>
-        <h1>Desain Grafis</h1>
-        <p>Sedang mempersiapkan karya terbaik untuk Anda dengan kreativitas dan presisi.</p>
     </div>
-    
-    <div class="progress-container">
-        <div class="progress-bar" id="progressBar"></div>
-    </div>
-    
-    <div class="design-icons">
-        <div class="icon">
-            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/aa7831a8-aa7b-41d0-902f-2ac1ac6871e0.png" alt="Brush icon" />
-        </div>
-        <div class="icon">
-            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/bfabf667-01e8-4cb5-b7e6-1b45698d3f2f.png" alt="Color palette icon" />
-        </div>
-        <div class="icon">
-            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a1c1a6a9-ebdf-4b14-a116-106c405442d5.png" alt="Typography icon" />
-        </div>
-        <div class="icon">
-            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/449b5fb1-8749-4d1d-b4a2-64561745337b.png" alt="Layers icon" />
-        </div>
-    </div>
-    
-    <div class="loading-text" id="loadingText">Memuat...</div>
-    
+
     <script>
-        // Progress bar animation
-        const progressBar = document.getElementById('progressBar');
-        const loadingText = document.getElementById('loadingText');
-        const loadingMessages = [
-            "Memuat template...",
-            "Mengatur komposisi...",
-            "Memilih warna...",
-            "Memproses efek...",
-            "Hampir selesai..."
-        ];
-        
-        let progress = 0;
-        const interval = setInterval(() => {
-            progress += Math.random() * 10;
-            if (progress >= 100) {
-                progress = 100;
-                clearInterval(interval);
-                loadingText.textContent = "Siap! Mengarahkan...";
-                setTimeout(() => {
-                    // Ini adalah tempat untuk redirect setelah loading selesai
-                    // window.location.href = "home.html";
-                }, 1000);
-            }
+        // Loading Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBar = document.getElementById('progressBar');
+            const loadingTexts = [
+                "Loading creative modules...",
+                "Initializing design tools...",
+                "Preparing tutorials...",
+                "Generating color palettes...",
+                "Almost ready..."
+            ];
+            const loadingTextElement = document.querySelector('.loading-text');
             
-            progressBar.style.width = progress + '%';
+            let progress = 0;
+            let textIndex = 0;
             
-            // Update loading text
-            if (progress < 20) {
-                loadingText.textContent = loadingMessages[0];
-            } else if (progress < 40) {
-                loadingText.textContent = loadingMessages[1];
-            } else if (progress < 60) {
-                loadingText.textContent = loadingMessages[2];
-            } else if (progress < 80) {
-                loadingText.textContent = loadingMessages[3];
-            } else {
-                loadingText.textContent = loadingMessages[4];
-            }
-        }, 500);
+            const loadingInterval = setInterval(function() {
+                progress += Math.floor(Math.random() * 10) + 5;
+                
+                if (progress > 100) progress = 100;
+                
+                progressBar.style.width = `${progress}%`;
+                
+                // Change loading text every 20% progress
+                if (progress >= (textIndex + 1) * 20 && textIndex < loadingTexts.length) {
+                    loadingTextElement.textContent = loadingTexts[textIndex];
+                    textIndex++;
+                }
+                
+                // When complete
+                if (progress === 100) {
+                    clearInterval(loadingInterval);
+                    
+                    // Animation before redirect
+                    setTimeout(function() {
+                        document.body.style.transition = 'opacity 0.5s ease';
+                        document.body.style.opacity = '0';
+                        
+                        setTimeout(function() {
+                            // In a real scenario, this would redirect to the main website
+                            // window.location.href = "main-website.html";
+                            
+                            // For this demo, we'll just reload the page
+                            window.location.reload();
+                        }, 500);
+                    }, 1000);
+                }
+            }, 300);
+        });
     </script>
 </body>
 </html>
-
