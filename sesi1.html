@@ -3,436 +3,988 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pelatihan Desain Grafis - Membuat Konten Visual</title>
+    <title>Pelatihan Desain Grafis - Membuat Konten</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f8fafc;
-            color: #334155;
         }
         
-        .timeline-item::before {
-            content: "";
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
             position: absolute;
-            left: -38px;
-            top: 0;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
+            width: 6px;
             background-color: #3b82f6;
-            border: 4px solid #bfdbfe;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 9999px;
         }
         
-        .timeline-connector {
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
             position: absolute;
-            left: -26px;
-            top: 24px;
-            bottom: -24px;
-            width: 2px;
-            background-color: #bfdbfe;
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            border: 4px solid #3b82f6;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
         }
         
-        .break-time {
-            background-color: #f0fdf4;
-            border-left-color: #86efac;
+        .left {
+            left: 0;
         }
         
-        .material-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -12px;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
         }
         
         .tooltip {
-            visibility: hidden;
-            opacity: 0;
-            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
         }
         
-        .tooltip-trigger:hover .tooltip {
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .tooltip:hover .tooltiptext {
             visibility: visible;
             opacity: 1;
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+            }
+            
+            .right {
+                left: 0%;
+            }
         }
         
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
+        .materi-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .materi-card:hover {
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .download-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
-<body class="min-h-screen">
-    <div class="container mx-auto px-4 py-8 max-w-6xl">
-        <!-- Header -->
-        <header class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/3 p-6 bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
-                    <img src="https://placehold.co/300x300" alt="Logo Pelatihan Desain Grafis dengan ikon pena dan palet warna" class="w-40 h-40 object-contain">
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-2">Pelatihan Desain Grafis</h1>
+                    <p class="text-lg text-blue-100">Membuat Konten (Naskah, Gambar/Ilustrasi)</p>
                 </div>
-                <div class="md:w-2/3 p-6">
-                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Pelatihan Desain Grafis Profesional</h1>
-                    <h2 class="text-xl font-semibold text-blue-600 mb-4">Membuat Konten Visual: Naskah & Ilustrasi</h2>
-                    
-                    <div class="flex flex-wrap gap-4 mb-4">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span class="text-gray-600">08:00 - 16:00 WIB</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                            <span class="text-gray-600">1 Hari Intensif</span>
-                        </div>
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                            </svg>
-                            <span class="text-gray-600">Level: Pemula - Menengah</span>
-                        </div>
+                <div class="flex items-center">
+                    <div class="bg-white text-blue-600 rounded-full p-4 shadow-lg">
+                        <i class="fas fa-palette text-4xl"></i>
                     </div>
-                    
-                    <p class="text-gray-600 mb-4">Pelatihan intensif satu hari untuk menguasai pembuatan konten visual mulai dari penulisan naskah hingga pembuatan ilustrasi yang efektif dan menarik.</p>
-                    
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Copywriting</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Desain Visual</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Ilustrasi Digital</span>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">Komposisi Gambar</span>
+                    <div class="ml-4">
+                        <p class="text-sm text-blue-100">Durasi:</p>
+                        <p class="font-semibold">08.00 - 16.00</p>
                     </div>
                 </div>
             </div>
-        </header>
-        
-        <!-- Jadwal Pelatihan -->
-        <section class="bg-white rounded-xl shadow-md overflow-hidden mb-8 p-6">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Jadwal Pelatihan
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-10">
+        <!-- Info Box -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-10 border-l-4 border-blue-500">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                Deskripsi Pelatihan
+            </h2>
+            <p class="text-gray-600 mb-4">
+                Pelatihan ini akan membahas secara mendalam proses pembuatan konten untuk desain grafis, termasuk penyusunan naskah dan pembuatan gambar/ilustrasi yang efektif. Peserta akan mempelajari teknik-teknik profesional dalam menciptakan konten visual yang menarik dan komunikatif.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                <div class="bg-blue-50 p-4 rounded-lg flex items-start">
+                    <i class="fas fa-user-tie text-blue-500 text-xl mr-3 mt-1"></i>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Instruktur</h3>
+                        <p class="text-gray-600">Profesional Desainer Grafis dengan pengalaman 10+ tahun</p>
+                    </div>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg flex items-start">
+                    <i class="fas fa-laptop-code text-blue-500 text-xl mr-3 mt-1"></i>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Alat</h3>
+                        <p class="text-gray-600">Adobe Illustrator, Photoshop & Canva</p>
+                    </div>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg flex items-start">
+                    <i class="fas fa-bullseye text-blue-500 text-xl mr-3 mt-1"></i>
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Tujuan</h3>
+                        <p class="text-gray-600">Mampu membuat konten desain yang profesional</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jadwal Timeline -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center flex items-center justify-center">
+                <i class="fas fa-calendar-alt text-blue-500 mr-3"></i>
+                Jadwal Pelatihan Harian
             </h2>
             
-            <div class="relative pl-12">
-                <!-- Timeline Item: Registrasi -->
-                <div class="relative pb-8 timeline-item">
-                    <div class="timeline-connector"></div>
-                    <div class="bg-white p-4 rounded-lg border-l-4 border-blue-400 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-bold text-lg text-gray-800">Registrasi & Pembukaan</h3>
-                                <p class="text-gray-600">Sambutan dan pengenalan program pelatihan</p>
-                            </div>
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">08:00 - 08:30</span>
+            <div class="timeline">
+                <!-- Sesi Pagi -->
+                <div class="timeline-item left">
+                    <div class="timeline-content bg-white">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mr-3">08:00 - 08:30</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Registrasi & Pembukaan</h3>
+                        </div>
+                        <p class="text-gray-600 mb-2">Registrasi peserta dan pembukaan acara pelatihan.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span>Lobi Utama</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Timeline Item: Sesi 1 -->
-                <div class="relative pb-8 timeline-item">
-                    <div class="timeline-connector"></div>
-                    <div class="bg-white p-4 rounded-lg border-l-4 border-blue-400 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-bold text-lg text-gray-800">Dasar-dasar Konten Visual Efektif</h3>
-                                <ul class="list-disc list-inside text-gray-600 ml-4 mt-2">
-                                    <li>Prinsip dasar desain komunikasi visual</li>
-                                    <li>Memahami tujuan konten dan audiens</li>
-                                    <li>Teori warna dan tipografi</li>
-                                </ul>
-                            </div>
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">08:30 - 10:00</span>
+                <div class="timeline-item right">
+                    <div class="timeline-content bg-white">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mr-3">08:30 - 10:00</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Pengantar Membuat Konten Desain</h3>
+                        </div>
+                        <p class="text-gray-600 mb-2">Memahami dasar-dasar pembuatan konten untuk desain grafis.</p>
+                        <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
+                            <li>Prinsip dasar komunikasi visual</li>
+                            <li>Memahami audiens target</li>
+                            <li>Elemen dasar desain yang efektif</li>
+                        </ul>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <span class="bg-blue-50 text-blue-600 px-2 py-1 rounded text-xs font-medium">Teori</span>
+                            <span class="bg-green-50 text-green-600 px-2 py-1 rounded text-xs font-medium">Diskusi</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Timeline Item: Coffee Break -->
-                <div class="relative pb-8 timeline-item">
-                    <div class="timeline-connector"></div>
-                    <div class="break-time p-4 rounded-lg border-l-4 border-green-400 shadow-sm">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-bold text-lg text-gray-800">Coffee Break</h3>
-                            </div>
-                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">10:00 - 10:15</span>
+                <div class="timeline-item left">
+                    <div class="timeline-content bg-white">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mr-3">10:00 - 10:15</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Coffee Break</h3>
+                        </div>
+                        <p class="text-gray-600">Istirahat pendek untuk refreshment.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content bg-white">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mr-3">10:15 - 12:00</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Pembuatan Naskah untuk Desain</h3>
+                        </div>
+                        <p class="text-gray-600 mb-2">Teknik menulis naskah yang efektif untuk mendukung desain visual.</p>
+                        <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
+                            <li>Struktur naskah yang baik</li>
+                            <li>Pemilihan kata dan tone yang sesuai</li>
+                            <li>Memadukan teks dengan elemen visual</li>
+                            <li>Praktik menulis naskah untuk berbagai jenis desain</li>
+                        </ul>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <span class="bg-purple-50 text-purple-600 px-2 py-1 rounded text-xs font-medium">Praktik</span>
+                            <span class="bg-blue-50 text-blue-600 px-2 py-1 rounded text-xs font-medium">Teori</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Timeline Item: Sesi 2 -->
-                <div class="relative pb-8 timeline-item">
-                    <div class="timeline-connector"></div>
-                    <div class="bg-white p-4 rounded-lg border-l-4 border-blue-400 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-bold text-lg text-gray-800">Penulisan Naskah untuk Visual</h3>
-                                <ul class="list-disc list-inside text-gray-600 ml-4 mt-2">
-                                    <li>Teknik copywriting untuk visual</li>
-                                    <li>Struktur naskah yang efektif</li>
-                                    <li>Adaptasi gaya bahasa untuk berbagai media</li>
-                                    <li>Praktik menulis headlines dan taglines</li>
-                                </ul>
-                            </div>
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">10:15 - 12:00</span>
+                <!-- Istirahat Siang -->
+                <div class="timeline-item left">
+                    <div class="timeline-content bg-white">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-orange-100 text-orange-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mr-3">12:00 - 13:00</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Istirahat & Makan Siang</h3>
+                        </div>
+                        <p class="text-gray-600">Santap siang dan istirahat.</p>
+                    </div>
+                </div>
+                
+                <!-- Sesi Siang -->
+                <div class="timeline-item right">
+                    <div class="timeline-content bg-white">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mr-3">13:00 - 15:00</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Membuat Gambar & Ilustrasi</h3>
+                        </div>
+                        <p class="text-gray-600 mb-2">Teknik pembuatan gambar dan ilustrasi untuk mendukung konten desain.</p>
+                        <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
+                            <li>Prinsip komposisi visual</li>
+                            <li>Pemilihan warna yang tepat</li>
+                            <li>Teknik pembuatan ilustrasi dasar</li>
+                            <li>Menggunakan foto dalam desain</li>
+                            <li>Praktik pembuatan elemen visual</li>
+                        </ul>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <span class="bg-purple-50 text-purple-600 px-2 py-1 rounded text-xs font-medium">Praktik</span>
+                            <span class="bg-yellow-50 text-yellow-600 px-2 py-1 rounded text-xs font-medium">Demo</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Timeline Item: Makan Siang -->
-                <div class="relative pb-8 timeline-item">
-                    <div class="timeline-connector"></div>
-                    <div class="break-time p-4 rounded-lg border-l-4 border-green-400 shadow-sm">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-bold text-lg text-gray-800">Makan Siang</h3>
-                            </div>
-                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">12:00 - 13:00</span>
+                <div class="timeline-item left">
+                    <div class="timeline-content bg-white">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mr-3">15:00 - 15:15</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Coffee Break</h3>
                         </div>
+                        <p class="text-gray-600">Istirahat pendek untuk refreshment.</p>
                     </div>
                 </div>
                 
-                <!-- Timeline Item: Sesi 3 -->
-                <div class="relative pb-8 timeline-item">
-                    <div class="timeline-connector"></div>
-                    <div class="bg-white p-4 rounded-lg border-l-4 border-blue-400 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-bold text-lg text-gray-800">Konsep Visual & Storytelling</h3>
-                                <ul class="list-disc list-inside text-gray-600 ml-4 mt-2">
-                                    <li>Menerjemahkan naskah ke konsep visual</li>
-                                    <li>Teknik brainstorming ide visual</li>
-                                    <li>Storytelling melalui gambar</li>
-                                    <li>Membuat moodboard dan referensi visual</li>
-                                </ul>
-                            </div>
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">13:00 - 14:30</span>
+                <div class="timeline-item right">
+                    <div class="timeline-content bg-white">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mr-3">15:15 - 16:00</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Praktik & Konsultasi Proyek</h3>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Timeline Item: Coffee Break -->
-                <div class="relative pb-8 timeline-item">
-                    <div class="timeline-connector"></div>
-                    <div class="break-time p-4 rounded-lg border-l-4 border-green-400 shadow-sm">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h3 class="font-bold text-lg text-gray-800">Coffee Break</h3>
-                            </div>
-                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">14:30 - 14:45</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Timeline Item: Sesi 4 -->
-                <div class="relative pb-8 timeline-item">
-                    <div class="timeline-connector"></div>
-                    <div class="bg-white p-4 rounded-lg border-l-4 border-blue-400 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-bold text-lg text-gray-800">Praktik Pembuatan Ilustrasi</h3>
-                                <ul class="list-disc list-inside text-gray-600 ml-4 mt-2">
-                                    <li>Tools dasar untuk ilustrasi digital</li>
-                                    <li>Teknik komposisi gambar</li>
-                                    <li>Membuat ilustrasi berdasarkan naskah</li>
-                                    <li>Praktik lapangan: Proyek akhir</li>
-                                </ul>
-                            </div>
-                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">14:45 - 16:00</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Timeline Item: Penutup -->
-                <div class="relative timeline-item">
-                    <div class="bg-white p-4 rounded-lg border-l-4 border-purple-400 shadow-sm hover:shadow-md transition-shadow">
-                        <div class="flex justify-between items-start">
-                            <div>
-                                <h3 class="font-bold text-lg text-gray-800">Penutupan & Sertifikat</h3>
-                                <p class="text-gray-600">Review hasil, sesi tanya jawab, dan penyerahan sertifikat</p>
-                            </div>
-                            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">16:00 - 16:30</span>
+                        <p class="text-gray-600 mb-2">Sesi praktik terpandu dan konsultasi proyek dengan instruktur.</p>
+                        <ul class="list-disc pl-5 text-gray-600 text-sm space-y-1">
+                            <li>Praktik membuat konten desain lengkap</li>
+                            <li>Review oleh instruktur</li>
+                            <li>Diskusi hasil pekerjaan</li>
+                            <li>Q&A untuk mengatasi kesulitan</li>
+                        </ul>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <span class="bg-purple-50 text-purple-600 px-2 py-1 rounded text-xs font-medium">Praktik</span>
+                            <span class="bg-green-50 text-green-600 px-2 py-1 rounded text-xs font-medium">Diskusi</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- Materi Detail -->
-        <section class="bg-white rounded-xl shadow-md overflow-hidden mb-8 p-6">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Detail Materi Pelatihan
+
+        <!-- Materi Pelatihan -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">
+                <i class="fas fa-book-open text-blue-500 mr-2"></i>
+                Materi Pelatihan
             </h2>
             
-            <div class="grid md:grid-cols-2 gap-6">
-                <!-- Materi: Naskah -->
-                <div class="material-card bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 ease-in-out">
-                    <div class="p-5">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800">Pembuatan Naskah</h3>
+            <div class="flex justify-center mb-6 border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8">
+                    <button onclick="openTab(event, 'naskah')" class="tab-btn border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-blue-600 hover:border-blue-300 active" id="defaultOpen">Naskah</button>
+                    <button onclick="openTab(event, 'gambar')" class="tab-btn border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-blue-600 hover:border-blue-300">Gambar/Ilustrasi</button>
+                    <button onclick="openTab(event, 'resources')" class="tab-btn border-b-2 border-transparent py-4 px-1 text-sm font-medium text-gray-500 hover:text-blue-600 hover:border-blue-300">Resources</button>
+                </nav>
+            </div>
+            
+            <div id="naskah" class="tab-content active">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="materi-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="p-5 border-b border-gray-200 bg-gray-50">
+                            <h3 class="text-lg font-semibold text-gray-800">Prinsip Penulisan untuk Desain</h3>
                         </div>
-                        <ul class="space-y-2">
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span>Teknik penulisan naskah untuk visual (copywriting)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span>Struktur naskah yang jelas dan efektif</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span>Memahami tone dan gaya bahasa untuk berbagai audiens</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span>Teknik penulisan headline dan tagline yang menarik</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span>Integrasi pesan utama dengan elemen visual</span>
-                            </li>
-                        </ul>
+                        <div class="p-5">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span class="text-gray-600">Gaya penulisan yang sesuai dengan tujuan desain</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span class="text-gray-600">Teknik penulisan headline yang menarik</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span class="text-gray-600">Membuat body text yang jelas dan efektif</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span class="text-gray-600">Menulis call-to-action yang persuasif</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="mt-6">
+                                <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                    <i class="fas fa-link text-blue-500 mr-2"></i>Contoh Baik:
+                                </h4>
+                                <div class="bg-gray-50 p-3 rounded border border-gray-200">
+                                    <p class="text-gray-800 font-medium">"Transformasi Digital dengan Solusi Terintegrasi"</p>
+                                    <p class="text-sm text-gray-600 mt-1">Lebih efektif daripada: "Pemanfaatan Teknologi untuk Bisnis"</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4">
+                                <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                    <i class="fas fa-download text-blue-500 mr-2"></i>Download Materi:
+                                </h4>
+                                <div class="flex space-x-2">
+                                    <a href="#" class="download-btn bg-blue-600 text-white px-3 py-1 rounded text-sm font-medium hover:bg-blue-700 transition flex items-center">
+                                        <i class="fas fa-file-pdf mr-1"></i> PDF
+                                    </a>
+                                    <a href="#" class="download-btn bg-gray-200 text-gray-700 px-3 py-1 rounded text-sm font-medium hover:bg-gray-300 transition flex items-center">
+                                        <i class="fas fa-file-word mr-1"></i> DOC
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <!-- Materi: Gambar/Ilustrasi -->
-                <div class="material-card bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 ease-in-out">
-                    <div class="p-5">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800">Pembuatan Gambar/Ilustrasi</h3>
+                    
+                    <div class="materi-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="p-5 border-b border-gray-200 bg-gray-50">
+                            <h3 class="text-lg font-semibold text-gray-800">Struktur Naskah Desain</h3>
                         </div>
-                        <ul class="space-y-2">
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span>Prinsip dasar komposisi visual</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span>Teknik brainstorming konsep visual</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span>Pemilihan gaya ilustrasi yang sesuai dengan naskah</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span>Alat digital untuk membuat ilustrasi sederhana</span>
-                            </li>
-                            <li class="flex items-start">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                </svg>
-                                <span>Teknik integrasi teks dan gambar yang harmonis</span>
-                            </li>
-                        </ul>
+                        <div class="p-5">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span class="text-gray-600">Hierarki informasi dalam desain</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span class="text-gray-600">Alur pembacaan yang natural</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span class="text-gray-600">Pembagian konten ke dalam blok visual</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span class="text-gray-600">Keseimbangan antara teks dan ruang kosong</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="mt-6">
+                                <h4 class="font-medium text-gray-700 mb-2">Template Struktur:</h4>
+                                <img src="https://placehold.co/600x400" alt="Diagram struktur naskah desain dengan hierarki informasi dari headline utama, subheadline, body text, hingga call-to-action" class="w-full rounded border border-gray-200">
+                            </div>
+                            
+                            <div class="mt-4">
+                                <a href="#" class="inline-block download-btn bg-green-600 text-white px-3 py-1 rounded text-sm font-medium hover:bg-green-700 transition flex items-center">
+                                    <i class="fas fa-file-alt mr-1"></i> Download Template
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <!-- Materi: Tools -->
-                <div class="material-card bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 ease-in-out">
-                    <div class="p-5">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-bold text-gray-800">Tools & Software</h3>
+                    
+                    <div class="materi-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="p-5 border-b border-gray-200 bg-gray-50">
+                            <h3 class="text-lg font-semibold text-gray-800">Naskah untuk Berbagai Media</h3>
                         </div>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-2">Untuk Naskah:</h4>
-                                <ul class="space-y-1">
-                                    <li class="flex items-start">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                        </svg>
-                                        <span>Google Docs</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                        </svg>
-                                        <span>Notion</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                        </svg>
-                                        <span>Grammarly</span>
-                                    </li>
-                                </ul>
+                        <div class="p-5">
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-700 flex items-center">
+                                        <i class="fas fa-newspaper text-blue-500 mr-2"></i>
+                                        Cetak
+                                    </h4>
+                                    <p class="text-sm text-gray-600 mt-1">Sesuaikan panjang teks dengan ruang desain, gunakan bahasa formal/semi-formal</p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-700 flex items-center">
+                                        <i class="fas fa-globe text-blue-500 mr-2"></i>
+                                        Digital
+                                    </h4>
+                                    <p class="text-sm text-gray-600 mt-1">Lebih ringkas, gunakan bullet points, SEO friendly</p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-700 flex items-center">
+                                        <i class="fas fa-ad text-blue-500 mr-2"></i>
+                                        Iklan
+                                    </h4>
+                                    <p class="text-sm text-gray-600 mt-1">Sangat singkat dan persuasif, fokus pada benefit</p>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-700 flex items-center">
+                                        <i class="fas fa-mobile-alt text-blue-500 mr-2"></i>
+                                        Social Media
+                                    </h4>
+                                    <p class="text-sm text-gray-600 mt-1">Bahasa lebih santai, dapat menggunakan emoji, mengandung ajakan interaksi</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-700 mb-2">Untuk Desain:</h4>
-                                <ul class="space-y-1">
-                                    <li class="flex items-start">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                        </svg>
-                                        <span>Canva</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                        </svg>
-                                        <span>Adobe Photoshop</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                        </svg>
-                                        <span>Figma</span>
-                                    </li>
-                                </ul>
+                            
+                            <div class="mt-6">
+                                <h4 class="font-medium text-gray-700 mb-2">Contoh Perbandingan:</h4>
+                                <div class="bg-gray-50 p-3 rounded border border-gray-200">
+                                    <p class="text-sm text-gray-800"><span class="font-medium">Cetak:</span> "Dalam rangka meningkatkan kualitas pelayanan, kami dengan ini mengumumkan pembukaan cabang baru di lokasi strategis pusat kota."</p>
+                                    <p class="text-sm text-gray-800 mt-2"><span class="font-medium">Social Media:</span> "Cabang baru kita sudah buka! 🎉 Temukan kita di tengah kota dengan promo spesial hari ini! #GrandOpening"</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div id="gambar" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="materi-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="p-5 border-b border-gray-200 bg-gray-50">
+                            <h3 class="text-lg font-semibold text-gray-800">Dasar Komposisi Visual</h3>
+                        </div>
+                        <div class="p-5">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span class="text-gray-600">Rule of thirds dan grid system</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span class="text-gray-600">Keseimbangan (balance) dan kontras</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span class="text-gray-600">Hierarki visual</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span class="text-gray-600">Alur mata pembaca</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="mt-6">
+                                <h4 class="font-medium text-gray-700 mb-2">Diagram Komposisi:</h4>
+                                <img src="https://placehold.co/600x400" alt="Visualisasi rule of thirds dengan garis grid menunjukkan titik-titik fokus optimal dalam sebuah desain" class="w-full rounded border border-gray-200">
+                            </div>
+                            
+                            <div class="mt-4">
+                                <a href="#" class="inline-block download-btn bg-blue-600 text-white px-3 py-1 rounded text-sm font-medium hover:bg-blue-700 transition flex items-center">
+                                    <i class="fas fa-ruler-combined mr-1"></i> Download Grid Templates
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="materi-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="p-5 border-b border-gray-200 bg-gray-50">
+                            <h3 class="text-lg font-semibold text-gray-800">Teori Warna dan Tipografi</h3>
+                        </div>
+                        <div class="p-5">
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-1">Psikologi Warna:</h4>
+                                    <div class="flex space-x-2 mb-3">
+                                        <span class="w-6 h-6 rounded-full bg-red-500 inline-block tooltip">
+                                            <span class="tooltiptext">Energi, gairah, penting</span>
+                                        </span>
+                                        <span class="w-6 h-6 rounded-full bg-blue-500 inline-block tooltip">
+                                            <span class="tooltiptext">Kepercayaan, kedamaian, profesional</span>
+                                        </span>
+                                        <span class="w-6 h-6 rounded-full bg-green-500 inline-block tooltip">
+                                            <span class="tooltiptext">Pertumbuhan, kesehatan, alam</span>
+                                        </span>
+                                        <span class="w-6 h-6 rounded-full bg-yellow-500 inline-block tooltip">
+                                            <span class="tooltiptext">Optimisme, peringatan, kebahagiaan</span>
+                                        </span>
+                                        <span class="w-6 h-6 rounded-full bg-purple-500 inline-block tooltip">
+                                            <span class="tooltiptext">Kreativitas, kemewahan, spiritual</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-1">Kombinasi Font:</h4>
+                                    <div class="space-y-2">
+                                        <div class="border-l-4 border-blue-500 pl-3 py-1">
+                                            <p class="font-serif text-lg">Serif Font</p>
+                                            <p class="text-xs text-gray-600">Untuk formalitas dan tradisional</p>
+                                        </div>
+                                        <div class="border-l-4 border-green-500 pl-3 py-1">
+                                            <p class="font-sans text-lg">Sans-serif Font</p>
+                                            <p class="text-xs text-gray-600">Modern dan mudah dibaca</p>
+                                        </div>
+                                        <div class="border-l-4 border-purple-500 pl-3 py-1">
+                                            <p class="font-mono text-lg">Monospace Font</p>
+                                            <p class="text-xs text-gray-600">Teknis dan spesialis</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6">
+                                <a href="#" class="inline-block download-btn bg-gradient-to-r from-purple-600 to-blue-600 text-white px-3 py-1 rounded text-sm font-medium hover:opacity-90 transition flex items-center">
+                                    <i class="fas fa-palette mr-1"></i> Color Scheme Generator
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="materi-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="p-5 border-b border-gray-200 bg-gray-50">
+                            <h3 class="text-lg font-semibold text-gray-800">Teknik Pembuatan Ilustrasi</h3>
+                        </div>
+                        <div class="p-5">
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-700">Illustration Styles:</h4>
+                                    <div class="flex flex-wrap gap-2 mt-2">
+                                        <div class="text-center">
+                                            <img src="https://placehold.co/100x100" alt="Ilustrasi flat design dengan warna-warna solid dan bentuk geometris sederhana" class="w-20 h-20 rounded mx-auto">
+                                            <p class="text-xs mt-1">Flat Design</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <img src="https://placehold.co/100x100" alt="Ilustrasi isometrik dengan efek 3D sudut 120 derajat" class="w-20 h-20 rounded mx-auto">
+                                            <p class="text-xs mt-1">Isometric</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <img src="https://placehold.co/100x100" alt="Hand-drawn illustration dengan tekstur pensil dan garis organik" class="w-20 h-20 rounded mx-auto">
+                                            <p class="text-xs mt-1">Hand-drawn</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <img src="https://placehold.co/100x100" alt="Ilustrasi karakter dengan gaya kartun yang ekspresif" class="w-20 h-20 rounded mx-auto">
+                                            <p class="text-xs mt-1">Character</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="pt-3">
+                                    <h4 class="font-medium text-gray-700 mb-2">Tools yang Digunakan:</h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-medium">Adobe Illustrator</span>
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Procreate</span>
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">Canva</span>
+                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-medium">Photoshop</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="pt-3">
+                                    <h4 class="font-medium text-gray-700 mb-1">Tutorial Step-by-Step:</h4>
+                                    <ol class="list-decimal pl-5 text-sm text-gray-600 space-y-1">
+                                        <li>Sketsa dasar dengan pensil</li>
+                                        <li>Digitalisasi bentuk dasar</li>
+                                        <li>Penambahan detail dan tekstur</li>
+                                        <li>Pemberian warna dan shading</li>
+                                        <li>Finishing dan ekspor</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="resources" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="materi-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="p-5 border-b border-gray-200 bg-gray-50">
+                            <h3 class="text-lg font-semibold text-gray-800">Referensi & Sumber Daya</h3>
+                        </div>
+                        <div class="p-5">
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-images text-blue-500 mr-2"></i>
+                                        Sumber Gambar Gratis:
+                                    </h4>
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-external-link-alt text-gray-400 mt-1 mr-2"></i>
+                                            <div>
+                                                <a href="https://unsplash.com" class="text-blue-600 hover:underline">Unsplash</a>
+                                                <p class="text-xs text-gray-500">Foto high-resolution gratis</p>
+                                            </div>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-external-link-alt text-gray-400 mt-1 mr-2"></i>
+                                            <div>
+                                                <a href="https://pixabay.com" class="text-blue-600 hover:underline">Pixabay</a>
+                                                <p class="text-xs text-gray-500">Foto, vektor, dan ilustrasi gratis</p>
+                                            </div>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-external-link-alt text-gray-400 mt-1 mr-2"></i>
+                                            <div>
+                                                <a href="https://undraw.co" class="text-blue-600 hover:underline">unDraw</a>
+                                                <p class="text-xs text-gray-500">Ilustrasi open-source</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-font text-blue-500 mr-2"></i>
+                                        Sumber Font Gratis:
+                                    </h4>
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-external-link-alt text-gray-400 mt-1 mr-2"></i>
+                                            <div>
+                                                <a href="https://fonts.google.com" class="text-blue-600 hover:underline">Google Fonts</a>
+                                                <p class="text-xs text-gray-500">Font web gratis</p>
+                                            </div>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-external-link-alt text-gray-400 mt-1 mr-2"></i>
+                                            <div>
+                                                <a href="https://fontsquirrel.com" class="text-blue-600 hover:underline">Font Squirrel</a>
+                                                <p class="text-xs text-gray-500">Font gratis komersial</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="materi-card bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="p-5 border-b border-gray-200 bg-gray-50">
+                            <h3 class="text-lg font-semibold text-gray-800">Tools & Software</h3>
+                        </div>
+                        <div class="p-5">
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-desktop text-blue-500 mr-2"></i>
+                                        Software Profesional:
+                                    </h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-medium flex items-center">
+                                            <i class="fab fa-adobe mr-1"></i> Photoshop
+                                        </span>
+                                        <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs font-medium flex items-center">
+                                            <i class="fab fa-adobe mr-1"></i> Illustrator
+                                        </span>
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium flex items-center">
+                                            <i class="fab fa-adobe mr-1"></i> InDesign
+                                        </span>
+                                        <span class="bg-purple-100 text-purple-800 px-2 py-1 rounded text-xs font-medium flex items-center">
+                                            <i class="fab fa-figma mr-1"></i> Figma
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-window-maximize text-blue-500 mr-2"></i>
+                                        Tools Online Gratis:
+                                    </h4>
+                                    <ul class="text-sm text-gray-600 space-y-2">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-external-link-alt text-gray-400 mt-1 mr-2"></i>
+                                            <div>
+                                                <a href="https://www.canva.com" class="text-blue-600 hover:underline">Canva</a>
+                                                <p class="text-xs text-gray-500">Desain grafis sederhana</p>
+                                            </div>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-external-link-alt text-gray-400 mt-1 mr-2"></i>
+                                            <div>
+                                                <a href="https://www.figma.com" class="text-blue-600 hover:underline">Figma</a>
+                                                <p class="text-xs text-gray-500">Desain UI/UX kolaboratif</p>
+                                            </div>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-external-link-alt text-gray-400 mt-1 mr-2"></i>
+                                            <div>
+                                                <a href="https://coolors.co" class="text-blue-600 hover:underline">Coolors</a>
+                                                <p class="text-xs text-gray-500">Color palette generator</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="font-medium text-gray-700 mb-2 flex items-center">
+                                        <i class="fas fa-mobile-alt text-blue-500 mr-2"></i>
+                                        Aplikasi Mobile:
+                                    </h4>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium flex items-center">
+                                            <i class="fab fa-android mr-1"></i> Adobe Express
+                                        </span>
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium flex items-center">
+                                            <i class="fab fa-apple mr-1"></i> Procreate
+                                        </span>
+                                        <span class="bg-indigo-100 text-indigo-800 px-2 py-1 rounded text-xs font-medium flex items-center">
+                                            <i class="fas fa-paint-brush mr-1"></i> Ibis Paint
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Evaluasi -->
+        <section class="mb-16 bg-white rounded-xl shadow-md overflow-hidden p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-clipboard-check text-blue-500 mr-2"></i>
+                Evaluasi Pembelajaran
+            </h2>
+            
+            <div class="space-y-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Kuis Singkat</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="font-medium text-gray-700 mb-2">1. Apa prinsip utama dalam menyusun naskah untuk desain iklan?</p>
+                            <div class="space-y-2 pl-5">
+                                <div class="flex items-start">
+                                    <input type="radio" name="q1" id="q1_a" class="mt-1 mr-2">
+                                    <label for="q1_a" class="text-gray-600">Panjang dan detil</label>
+                                </div>
+                                <div class="flex items-start">
+                                    <input type="radio" name="q1" id="q1_b" class="mt-1 mr-2">
+                                    <label for="q1_b" class="text-gray-600">Singkat dan persuasif</label>
+                                </div>
+                                <div class="flex items-start">
+                                    <input type="radio" name="q1" id="q1_c" class="mt-1 mr-2">
+                                    <label for="q1_c" class="text-gray-600">Banyak menggunakan istilah teknis</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="font-medium text-gray-700 mb-2">2. Apa fungsi rule of thirds dalam komposisi visual?</p>
+                            <div class="space-y-2 pl-5">
+                                <div class="flex items-start">
+                                    <input type="radio" name="q2" id="q2_a" class="mt-1 mr-2">
+                                    <label for="q2_a" class="text-gray-600">Membuat bagian visual berantakan</label>
+                                </div>
+                                <div class="flex items-start">
+                                    <input type="radio" name="q2" id="q2_b" class="mt-1 mr-2">
+                                    <label for="q2_b" class="text-gray-600">Menciptakan keseimbangan dan titik fokus</label>
+                                </div>
+                                <div class="flex items-start">
+                                    <input type="radio" name="q2" id="q2_c" class="mt-1 mr-2">
+                                    <label for="q2_c" class="text-gray-600">Membatasi warna yang digunakan</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-4 bg-gray-50 rounded-lg border border-gray-200">
+                            <p class="font-medium text-gray-700 mb-2">3. Apa warna yang paling sesuai untuk merepresentasikan profesionalisme dan kepercayaan?</p>
+                            <div class="space-y-2 pl-5">
+                                <div class="flex items-start">
+                                    <input type="radio" name="q3" id="q3_a" class="mt-1 mr-2">
+                                    <label for="q3_a" class="text-gray-600">Merah</label>
+                                </div>
+                                <div class="flex items-start">
+                                    <input type="radio" name="q3" id="q3_b" class="mt-1 mr-2">
+                                    <label for="q3_b" class="text-gray-600">Biru</label>
+                                </div>
+                                <div class="flex items-start">
+                                    <input type="radio" name="q3" id="q3_c" class="mt-1 mr-2">
+                                    <label for="q3_c" class="text-gray-600">Hijau neon</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition">
+                            Kirim Jawaban
+                        </button>
+                    </div>
+                </div>
                 
-                <!-- Materi: Proyek Akhir -->
-                <div class="material-card bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 ease-in-out">
-                    <div class="p-5">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-blue-100 p-3 rounded-lg mr-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Praktikum Akhir</h3>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <p class="text-gray-600 mb-4">Buatlah sebuah konten desain lengkap yang mencakup:</p>
+                        <ol class="list-decimal pl-5 text-gray-600 space-y-2">
+                            <li>Naskah dengan headline, body text, dan call-to-action yang efektif</li>
+                            <li>Ilustrasi atau gambar pendukung yang relevan</li>
+                            <li>Komposisi layout yang seimbang</li>
+                            <li>Kombinasi warna dan tipografi yang harmonis</li>
+                        </ol>
+                        
+                        <div class="mt-6">
+                            <h4 class="font-medium text-gray-700 mb-2">Upload Hasil Praktikum:</h4>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center">
+                                <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
+                                <p class="text-gray-500 text-sm">Drag & drop file here or click to browse</p>
+                                <button class="mt-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-1 px-3 rounded transition">
+                                    Pilih File
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <button class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded transition">
+                                Submit Tugas
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Informasi Instruktur -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-8 text-center">
+                <i class="fas fa-chalkboard-teacher text-blue-500 mr-2"></i>
+                Tentang Instruktur
+            </h2>
+            
+            <div class="bg-white rounded-xl shadow-md overflow-hidden max-w-4xl mx-auto">
+                <div class="md:flex">
+                    <div class="md:w-1/3 p-6 flex justify-center items-center bg-gray-50">
+                        <img src="https://placehold.co/400x600" alt="Foto instruktur profesional dengan latar belakang studio desain, mengenakan kacamata dan casual formal, berdiri di depan papan mood board" class="rounded-lg shadow-md w-full max-w-xs">
+                    </div>
+                    <div class="md:w-2/3 p-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Johan Santoso, S.Ds.</h3>
+                        <p class="text-blue-600 font-medium mb-4">Lead Graphic Designer & Creative Director</p>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-briefcase text-blue-500 mr-2"></i>
+                                Pengalaman Profesional:
+                            </h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>12+ tahun pengalaman di industri desain grafis</li>
+                                <li>Creative Director di CreativeHub Indonesia (2016-sekarang)</li>
+                                <li>Senior Designer di D'Gallery Agency (2012-2016)</li>
+                                <li>Freelance Designer untuk berbagai merek internasional</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-graduation-cap text-blue-500 mr-2"></i>
+                                Kualifikasi:
+                            </h4>
+                            <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                <li>S1 Desain Komunikasi Visual, Institut Seni Indonesia</li>
+                                <li>Sertifikasi Adobe Certified Expert (ACE)</li>
+                                <li>Sertifikasi Google Ads Design Specialist</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2 flex items-center">
+                                <i class="fas fa-medal text-blue-500 mr-2"></i>
+                                Prestasi:
+                            </h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">Best Design Award 2019</span>
+                                <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-xs font-medium">Creativity International Award</span>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-medium">Top Trainer 2022</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 border-t border-gray-200 p-6">
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="#" class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-200 transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 hover:bg-purple-200 transition">
+                            <i class="fab fa-behance"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-red-600 hover:bg-red-200 transition">
+                            <i class="fab fa-dribbble"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-300 transition">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Tentang Pelatihan</h3>
+                    <p class="text-gray-400 text-sm">
+                        Program pelatihan intens
