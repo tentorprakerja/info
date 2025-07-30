@@ -1,241 +1,372 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pelatihan Desain Grafis Profesional</title>
+    <title>IMBIA Yogyakarta - Promo Belajar Desain Grafis</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        
+        /* Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
             background-color: #f8f9fa;
             color: #333;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
         }
-
-        .loading-container {
+        
+        /* Container */
+        .container {
             width: 90%;
-            max-width: 800px;
-            background: white;
-            border-radius: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 40px;
             text-align: center;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
-
+        
+        /* Decorative Elements */
+        .graphic-element {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(75, 123, 236, 0.1);
+            z-index: -1;
+        }
+        
+        .graphic-element:nth-child(1) {
+            top: -50px;
+            left: -50px;
+        }
+        
+        .graphic-element:nth-child(2) {
+            bottom: -30px;
+            right: -30px;
+            background: rgba(236, 75, 75, 0.1);
+        }
+        
+        /* Header */
+        .header {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
         .logo-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-
-        .logo-box {
-            width: 100px;
-            height: 100px;
-            border-radius: 20px;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            background-color: #4b7bec;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(75, 123, 236, 0.3);
         }
-
-        .logo-box:hover {
-            transform: translateY(-10px);
+        
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 800;
+            color: white;
+            text-transform: uppercase;
         }
-
-        .photoshop {
-            background: linear-gradient(135deg, #31a9ff, #2c71cf);
-        }
-
-        .indesign {
-            background: linear-gradient(135deg, #fd3f92, #ee2761);
-        }
-
-        .coreldraw {
-            background: linear-gradient(135deg, #ff6c2f, #f8981d);
-        }
-
-        .logo-img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-        }
-
-        h1 {
+        
+        .title {
             font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: #2c3e50;
-            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #4b7bec;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            color: #7f8c8d;
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
         }
-
-        .progress-container {
-            width: 100%;
-            height: 15px;
-            background: #ecf0f1;
-            border-radius: 10px;
-            margin: 30px 0;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 0;
-            border-radius: 10px;
-            background: linear-gradient(90deg, #ee2761, #2c71cf, #f8981d);
-            background-size: 200% 100%;
-            animation: gradient 3s ease infinite, progress 5s ease forwards;
-            transition: width 0.5s ease;
-        }
-
-        .status-text {
-            font-size: 0.9rem;
-            color: #7f8c8d;
-            margin-top: 10px;
-            text-align: right;
-        }
-
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        @keyframes progress {
-            0% {
-                width: 0;
-            }
-            100% {
-                width: 100%;
-            }
-        }
-
-        .dots-container {
+        
+        /* Software Icons */
+        .software-section {
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 3rem 0;
         }
-
-        .dot {
-            width: 10px;
-            height: 10px;
+        
+        .software-card {
+            flex: 1;
+            min-width: 200px;
+            padding: 1.5rem;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .software-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .software-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
             border-radius: 50%;
-            background: #bdc3c7;
-            animation: pulse 1.5s infinite ease-in-out;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            color: #4b7bec;
+            font-weight: bold;
         }
-
-        .dot:nth-child(1) {
-            animation-delay: 0s;
+        
+        .software-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
-
-        .dot:nth-child(2) {
-            animation-delay: 0.3s;
+        
+        .software-description {
+            color: #666;
+            font-size: 0.9rem;
         }
-
-        .dot:nth-child(3) {
-            animation-delay: 0.6s;
+        
+        /* Countdown Timer */
+        .countdown-container {
+            margin: 2rem 0;
         }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(0.8);
-                opacity: 0.5;
-            }
-            50% {
-                transform: scale(1.2);
-                opacity: 1;
-            }
+        
+        .countdown-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #666;
         }
-
+        
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .countdown-item {
+            background-color: #4b7bec;
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .countdown-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background-color: #ec4b4b;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(236, 75, 75, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button:hover {
+            background-color: #d14343;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(236, 75, 75, 0.4);
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 3rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .loading-container {
-                width: 95%;
-                padding: 30px 20px;
-            }
-            
-            h1 {
+            .title {
                 font-size: 2rem;
             }
             
-            .logo-container {
-                gap: 15px;
+            .subtitle {
+                font-size: 1rem;
             }
             
-            .logo-box {
-                width: 80px;
-                height: 80px;
+            .software-section {
+                flex-direction: column;
+                align-items: center;
             }
             
-            .logo-img {
-                width: 50px;
-                height: 50px;
+            .software-card {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .countdown-timer {
+                flex-wrap: wrap;
             }
         }
     </style>
 </head>
 <body>
-    <div class="loading-container">
-        <h1>Pelatihan Desain Grafis Profesional</h1>
-        <p>Menguasai Adobe Photoshop, InDesign, dan CorelDraw untuk kebutuhan desain kreatif</p>
+    <div class="container">
+        <div class="graphic-element"></div>
+        <div class="graphic-element"></div>
         
-        <div class="logo-container">
-            <div class="logo-box photoshop">
-                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c1937ae3-cb99-4ec7-8b67-ab6b898e9fe0.png" alt="Adobe Photoshop logo with blue gradient background" class="logo-img">
+        <header class="header animate">
+            <div class="logo-container">
+                <div class="logo-text">IMBIA</div>
             </div>
-            <div class="logo-box indesign">
-                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ab44f5b2-78bf-41c7-a492-d602498cff87.png" alt="Adobe InDesign logo with pink gradient background" class="logo-img">
-            </div>
-            <div class="logo-box coreldraw">
-                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cb212fcc-3ad4-4376-80c1-3c775e6418eb.png" alt="CorelDraw logo with orange gradient background" class="logo-img">
+            <h1 class="title">Belajar Desain Grafis</h1>
+            <p class="subtitle">Kuasai Software Desain Profesional bersama LPK IMBIA Yogyakarta</p>
+        </header>
+        
+        <div class="countdown-container animate delay-1">
+            <p class="countdown-title">PROMO TERBATAS HINGGA:</p>
+            <div class="countdown-timer">
+                <div class="countdown-item">
+                    <div class="countdown-value" id="days">00</div>
+                    <div class="countdown-label">Hari</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="hours">00</div>
+                    <div class="countdown-label">Jam</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="minutes">00</div>
+                    <div class="countdown-label">Menit</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="seconds">00</div>
+                    <div class="countdown-label">Detik</div>
+                </div>
             </div>
         </div>
         
-        <div class="progress-container">
-            <div class="progress-bar"></div>
+        <div class="software-section">
+            <div class="software-card animate delay-1">
+                <div class="software-icon">Ps</div>
+                <h3 class="software-name">Adobe Photoshop</h3>
+                <p class="software-description">Edit foto profesional untuk berbagai kebutuhan desain</p>
+            </div>
+            <div class="software-card animate delay-2">
+                <div class="software-icon">Id</div>
+                <h3 class="software-name">Adobe InDesign</h3>
+                <p class="software-description">Membuat layout untuk majalah, buku, dan publikasi lainnya</p>
+            </div>
+            <div class="software-card animate delay-3">
+                <div class="software-icon">Cr</div>
+                <h3 class="software-name">CorelDraw</h3>
+                <p class="software-description">Desain vektor untuk logo, ilustrasi, dan desain cetak</p>
+            </div>
         </div>
-        <div class="status-text">Memuat materi pelatihan...</div>
         
-        <div class="dots-container">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
+        <a href="#daftar" class="cta-button animate delay-3">DAFTAR SEKARANG</a>
+        
+        <div class="footer animate delay-3">
+            <p>IMBIA Yogyakarta - Lembaga Pendidikan dan Keterampilan Profesional</p>
         </div>
     </div>
 
     <script>
-        // Simulate loading completion and redirect
-        setTimeout(function() {
-            window.location.href = "/info/membuatkonten.html";
-        }, 5000);
+        // Countdown Timer
+        const countdown = () => {
+            // Set the date we're counting down to (7 days from now)
+            const countdownDate = new Date();
+            countdownDate.setDate(countdownDate.getDate() + 7);
+            
+            const updateTimer = () => {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+                
+                // Time calculations
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                // Display the result
+                document.getElementById('days').innerText = days.toString().padStart(2, '0');
+                document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+                
+                // If the countdown is finished
+                if (distance < 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('days').innerText = '00';
+                    document.getElementById('hours').innerText = '00';
+                    document.getElementById('minutes').innerText = '00';
+                    document.getElementById('seconds').innerText = '00';
+                }
+            }
+            
+            // Update the countdown every 1 second
+            updateTimer();
+            const countdownInterval = setInterval(updateTimer, 1000);
+        }
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            countdown();
+        });
     </script>
 </body>
 </html>
