@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop Desain Grafis - Membuat Konten</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 35px;
+            top: 30px;
+            height: calc(100% - 30px);
+            width: 2px;
+            background-color: #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="hero-gradient text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0">
+                    <h1 class="text-4xl lg:text-5xl font-bold leading-tight mb-4">Workshop Desain Grafis</h1>
+                    <h2 class="text-2xl lg:text-3xl font-semibold mb-6">Membuat Konten yang Menarik</h2>
+                    <p class="text-lg mb-8">Jumat, 1 Agustus 2025 • 08:00 - 12:00 WIB</p>
+                    <button class="bg-white text-purple-800 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300">
+                        Daftar Sekarang
+                    </button>
+                </div>
+                <div class="lg:w-1/2">
+                    <img src="https://placehold.co/600x400" alt="Ilustrasi workshop desain grafis dengan orang-orang sedang berdiskusi tentang konten kreatif di sekitar komputer dan papan tulis" class="rounded-lg shadow-2xl w-full" />
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-16">
+        <!-- Tentang Workshop -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-12">Tentang Workshop Ini</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <h3 class="text-2xl font-semibold mb-4 text-purple-800">Apa yang Akan Anda Pelajari?</h3>
+                    <p class="mb-6">Dalam workshop ini, kita akan mempelajari cara membuat konten yang menarik dengan komposisi yang tepat antara naskah dan visual.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-2">✓</span>
+                            <span>Prinsip dasar desain grafis untuk konten</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-2">✓</span>
+                            <span>Teknik membuat naskah yang efektif</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-2">✓</span>
+                            <span>Memilih gambar/ilustrasi yang tepat</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-2">✓</span>
+                            <span>Keseimbangan antara teks dan visual</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <img src="https://placehold.co/600x400" alt="Contoh layout desain grafis yang baik dengan penempatan teks dan gambar yang harmonis dalam satu halaman" class="rounded-lg mb-6 w-full" />
+                    <h3 class="text-2xl font-semibold mb-4 text-purple-800">Siapa yang Harus Hadir?</h3>
+                    <p>Workshop ini cocok untuk pemula yang ingin mempelajari dasar-dasar desain grafis untuk konten media sosial, blog, atau materi pemasaran.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Materi Pembelajaran -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-12">Materi Pembelajaran</h2>
+            
+            <!-- Timeline -->
+            <div class="max-w-3xl mx-auto">
+                <div class="space-y-8">
+                    <!-- Sesi 1 -->
+                    <div class="timeline-item relative pl-16">
+                        <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold">1</div>
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <h3 class="text-xl font-semibold mb-2">Naskah yang Efektif</h3>
+                            <p class="text-gray-600 mb-4">09:00 - 10:00</p>
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li>Struktur naskah yang jelas</li>
+                                <li>Pemilihan kata yang tepat</li>
+                                <li>Tone dan gaya penulisan</li>
+                                <li>Hierarki informasi</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Sesi 2 -->
+                    <div class="timeline-item relative pl-16">
+                        <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold">2</div>
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <h3 class="text-xl font-semibold mb-2">Gambar/Ilustrasi</h3>
+                            <p class="text-gray-600 mb-4">10:15 - 11:15</p>
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li>Memilih gambar yang relevan</li>
+                                <li>Komposisi visual</li>
+                                <li>Rasio teks dan gambar</li>
+                                <li>Sumber gambar berkualitas</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Sesi 3 -->
+                    <div class="timeline-item relative pl-16">
+                        <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold">3</div>
+                        <div class="bg-white p-6 rounded-xl shadow-md">
+                            <h3 class="text-xl font-semibold mb-2">Integrasi Naskah & Visual</h3>
+                            <p class="text-gray-600 mb-4">11:30 - 12:30</p>
+                            <ul class="list-disc pl-5 space-y-2">
+                                <li>Penempatan elemen</li>
+                                <li>Keseimbangan konten</li>
+                                <li>Menyampaikan pesan dengan jelas</li>
+                                <li>Studi kasus praktik terbaik</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contoh Pekerjaan -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-12">Contoh Desain Grafis</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Contoh 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400" alt="Poster dengan kombinasi teks dan gambar yang harmonis, menggunakan warna utama biru dan putih dengan ilustrasi flat design" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Poster Pendidikan</h3>
+                        <p class="text-gray-600">Contoh komposisi teks pendek dengan ilustrasi pendukung.</p>
+                    </div>
+                </div>
+                
+                <!-- Contoh 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400" alt="Infografis dengan hierarki visual yang jelas, memadukan data statistik dengan ikon dan teks penjelasan singkat" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Infografis</h3>
+                        <p class="text-gray-600">Presentasi visual untuk informasi kompleks.</p>
+                    </div>
+                </div>
+                
+                <!-- Contoh 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400" alt="Mockup media sosial dengan konten promosi produk, menunjukkan keseimbangan antara gambar produk dan teks penjelasan" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Konten Media Sosial</h3>
+                        <p class="text-gray-600">Desain optimal untuk berbagai platform.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Workshop Desain Grafis</h3>
+                    <p class="mb-4">Membuat konten yang menarik dengan komposisi sempurna antara naskah dan visual.</p>
+                    <p>Jumat, 1 Agustus 2025</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Kontak Kami</h3>
+                    <p class="mb-2">Email: workshop@desaingrafis.id</p>
+                    <p class="mb-2">Telepon: (021) 123-4567</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Tempat</h3>
+                    <p>Gedung Kreatif Digital</p>
+                    <p>Jl. Multimedia No. 10</p>
+                    <p>Jakarta Selatan</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p>© 2025 Workshop Desain Grafis. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animasi scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Efek paralaks untuk gambar hero
+        window.addEventListener('scroll', function() {
+            const heroImg = document.querySelector('.parallax-img');
+            const scrollPosition = window.pageYOffset;
+            heroImg.style.transform = 'translateY(' + scrollPosition * 0.5 + 'px)';
+        });
+    </script>
+</body>
+</html>
