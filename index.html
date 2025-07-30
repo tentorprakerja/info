@@ -3,320 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Graphic Design Training | Loading...</title>
+    <title>Pelatihan Desain Grafis Profesional</title>
     <style>
-        /* Base Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background-color: #121212;
-            color: #ffffff;
-            overflow: hidden;
-            height: 100vh;
+            background-color: #f8f9fa;
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
         }
 
-        /* Main Container */
         .loading-container {
-            text-align: center;
             width: 90%;
             max-width: 800px;
-            padding: 30px;
-            background-color: rgba(30, 30, 30, 0.8);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            z-index: 2;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Logo Styles */
-        .logo {
-            margin-bottom: 30px;
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
         }
 
-        .logo svg {
-            width: 120px;
-            height: auto;
+        .logo-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
 
-        .logo-text {
+        .logo-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .photoshop {
+            background: linear-gradient(135deg, #31a9ff, #2c71cf);
+        }
+
+        .indesign {
+            background: linear-gradient(135deg, #fd3f92, #ee2761);
+        }
+
+        .coreldraw {
+            background: linear-gradient(135deg, #ff6c2f, #f8981d);
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        h1 {
             font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
             font-weight: 700;
-            margin-top: 15px;
-            background: linear-gradient(90deg, #ff8a00, #e52e71, #b36bff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: 1px;
         }
 
-        /* Progress Bar */
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #7f8c8d;
+        }
+
         .progress-container {
             width: 100%;
-            height: 8px;
-            background-color: #333;
-            border-radius: 4px;
+            height: 15px;
+            background: #ecf0f1;
+            border-radius: 10px;
             margin: 30px 0;
             overflow: hidden;
+            position: relative;
         }
 
         .progress-bar {
             height: 100%;
             width: 0;
-            background: linear-gradient(90deg, #ff8a00, #e52e71);
-            border-radius: 4px;
-            transition: width 0.3s ease;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #ee2761, #2c71cf, #f8981d);
+            background-size: 200% 100%;
+            animation: gradient 3s ease infinite, progress 5s ease forwards;
+            transition: width 0.5s ease;
         }
 
-        /* Loading Text */
-        .loading-text {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: #aaa;
-            font-weight: 300;
-        }
-
-        .loading-subtext {
+        .status-text {
             font-size: 0.9rem;
-            color: #666;
+            color: #7f8c8d;
+            margin-top: 10px;
+            text-align: right;
         }
 
-        /* Tool Icons */
-        .tools-container {
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes progress {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        .dots-container {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin: 40px 0;
-            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 40px;
         }
 
-        .tool-icon {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .tool-icon:hover {
-            transform: translateY(-5px);
-        }
-
-        .tool-icon svg {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 10px;
-        }
-
-        .tool-name {
-            font-size: 0.8rem;
-            color: #777;
-        }
-
-        /* Creative Background Elements */
-        .design-element {
-            position: absolute;
-            opacity: 0.1;
-            z-index: 1;
-        }
-
-        .element-1 {
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(45deg, #ff8a00, transparent);
+        .dot {
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            top: -50px;
-            left: -50px;
+            background: #bdc3c7;
+            animation: pulse 1.5s infinite ease-in-out;
         }
 
-        .element-2 {
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(135deg, #e52e71, transparent);
-            border-radius: 30px;
-            bottom: -80px;
-            right: -80px;
-            transform: rotate(45deg);
+        .dot:nth-child(1) {
+            animation-delay: 0s;
         }
 
-        .element-3 {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(-45deg, #b36bff, transparent);
-            border-radius: 20px;
-            top: 50%;
-            left: 20%;
-            transform: rotate(15deg);
+        .dot:nth-child(2) {
+            animation-delay: 0.3s;
         }
 
-        /* Responsive Adjustments */
-        @media (max-width: 600px) {
-            .logo-text {
-                font-size: 1.8rem;
+        .dot:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .loading-container {
+                width: 95%;
+                padding: 30px 20px;
             }
             
-            .loading-text {
-                font-size: 1rem;
+            h1 {
+                font-size: 2rem;
             }
-
-            .tools-container {
+            
+            .logo-container {
                 gap: 15px;
             }
-
-            .tool-icon svg {
-                width: 30px;
-                height: 30px;
+            
+            .logo-box {
+                width: 80px;
+                height: 80px;
             }
-        }
-
-        @media (max-width: 400px) {
-            .loading-container {
-                padding: 20px;
-            }
-
-            .logo-text {
-                font-size: 1.5rem;
+            
+            .logo-img {
+                width: 50px;
+                height: 50px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Design Background Elements -->
-    <div class="design-element element-1"></div>
-    <div class="design-element element-2"></div>
-    <div class="design-element element-3"></div>
-
-    <!-- Main Loading Content -->
     <div class="loading-container">
-        <div class="logo">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-                <path d="M32 6L6 32L32 58L58 32L32 6Z" stroke="url(#gradient1)" stroke-width="4"/>
-                <path d="M32 16L16 32L32 48L48 32L32 16Z" stroke="url(#gradient2)" stroke-width="4"/>
-                <path d="M32 26L26 32L32 38L38 32L32 26Z" stroke="url(#gradient3)" stroke-width="4"/>
-                <defs>
-                    <linearGradient id="gradient1" x1="6" y1="6" x2="58" y2="58" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#ff8a00"/>
-                        <stop offset="1" stop-color="#e52e71"/>
-                    </linearGradient>
-                    <linearGradient id="gradient2" x1="16" y1="16" x2="48" y2="48" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#e52e71"/>
-                        <stop offset="1" stop-color="#b36bff"/>
-                    </linearGradient>
-                    <linearGradient id="gradient3" x1="26" y1="26" x2="38" y2="38" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#b36bff"/>
-                        <stop offset="1" stop-color="#ff8a00"/>
-                    </linearGradient>
-                </defs>
-            </svg>
-            <div class="logo-text">DESIGN MASTERY</div>
+        <h1>Pelatihan Desain Grafis Profesional</h1>
+        <p>Menguasai Adobe Photoshop, InDesign, dan CorelDraw untuk kebutuhan desain kreatif</p>
+        
+        <div class="logo-container">
+            <div class="logo-box photoshop">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c1937ae3-cb99-4ec7-8b67-ab6b898e9fe0.png" alt="Adobe Photoshop logo with blue gradient background" class="logo-img">
+            </div>
+            <div class="logo-box indesign">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ab44f5b2-78bf-41c7-a492-d602498cff87.png" alt="Adobe InDesign logo with pink gradient background" class="logo-img">
+            </div>
+            <div class="logo-box coreldraw">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cb212fcc-3ad4-4376-80c1-3c775e6418eb.png" alt="CorelDraw logo with orange gradient background" class="logo-img">
+            </div>
         </div>
-
-        <div class="loading-text">Preparing your graphic design training experience...</div>
         
         <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
+            <div class="progress-bar"></div>
         </div>
-
-        <div class="loading-subtext">Mastering Adobe Creative Suite • Color Theory • Typography • Layout Design</div>
-
-        <div class="tools-container">
-            <div class="tool-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="1" y="1" width="22" height="22" rx="2" stroke="#ff8a00"/>
-                    <path d="M16 8L8 16" stroke="#ff8a00"/>
-                    <path d="M8 8l8 8" stroke="#ff8a00"/>
-                </svg>
-                <div class="tool-name">Photoshop</div>
-            </div>
-            <div class="tool-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#e52e71"/>
-                    <path d="M2 17l10 5 10-5" stroke="#e52e71"/>
-                    <path d="M2 12l10 5 10-5" stroke="#e52e71"/>
-                </svg>
-                <div class="tool-name">Illustrator</div>
-            </div>
-            <div class="tool-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="5" y="4" width="14" height="16" rx="1" stroke="#b36bff"/>
-                    <path d="M9 8h6" stroke="#b36bff"/>
-                    <path d="M9 12h6" stroke="#b36bff"/>
-                    <path d="M9 16h4" stroke="#b36bff"/>
-                </svg>
-                <div class="tool-name">InDesign</div>
-            </div>
-            <div class="tool-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10" stroke="#26c6da"/>
-                    <path d="M12 8v4l3 3" stroke="#26c6da"/>
-                </svg>
-                <div class="tool-name">After Effects</div>
-            </div>
-            <div class="tool-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="23 7 16 12 23 17 23 7" stroke="#66bb6a"/>
-                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2" stroke="#66bb6a"/>
-                </svg>
-                <div class="tool-name">Premiere Pro</div>
-            </div>
+        <div class="status-text">Memuat materi pelatihan...</div>
+        
+        <div class="dots-container">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
         </div>
     </div>
 
     <script>
-        // Loading Animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const progressBar = document.getElementById('progressBar');
-            const loadingTexts = [
-                "Loading creative modules...",
-                "Initializing design tools...",
-                "Preparing tutorials...",
-                "Generating color palettes...",
-                "Almost ready..."
-            ];
-            const loadingTextElement = document.querySelector('.loading-text');
-            
-            let progress = 0;
-            let textIndex = 0;
-            
-            const loadingInterval = setInterval(function() {
-                progress += Math.floor(Math.random() * 10) + 5;
-                
-                if (progress > 100) progress = 100;
-                
-                progressBar.style.width = `${progress}%`;
-                
-                // Change loading text every 20% progress
-                if (progress >= (textIndex + 1) * 20 && textIndex < loadingTexts.length) {
-                    loadingTextElement.textContent = loadingTexts[textIndex];
-                    textIndex++;
-                }
-                
-                // When complete
-                if (progress === 100) {
-                    clearInterval(loadingInterval);
-                    
-                    // Animation before redirect
-                    setTimeout(function() {
-                        document.body.style.transition = 'opacity 0.5s ease';
-                        document.body.style.opacity = '0';
-                        
-                        setTimeout(function() {
-                            // In a real scenario, this would redirect to the main website
-                            // window.location.href = "main-website.html";
-                            
-                            // For this demo, we'll just reload the page
-                            window.location.reload();
-                        }, 500);
-                    }, 1000);
-                }
-            }, 300);
-        });
+        // Simulate loading completion and redirect
+        setTimeout(function() {
+            window.location.href = "/info/membuatkonten.html";
+        }, 5000);
     </script>
 </body>
 </html>
+
